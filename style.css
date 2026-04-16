@@ -1,11 +1,12 @@
 body {
   font-family: Arial;
-  background: #f4f4f4;
+  background: #121212;
+  color: #ffffff;
   padding: 20px;
 }
 
 h1 {
-  color: #333;
+  color: white;
 }
 
 form {
@@ -15,18 +16,48 @@ form {
 input, textarea {
   display: block;
   margin: 10px 0;
-  padding: 8px;
+  padding: 10px;
   width: 300px;
+  border-radius: 6px;
+  border: none;
 }
 
 button {
   padding: 10px;
   cursor: pointer;
+  background: #7c3aed;
+  border: none;
+  color: white;
+  border-radius: 6px;
+}
+
+button:hover {
+  opacity: 0.85;
 }
 
 li {
-  background: white;
-  padding: 10px;
+  background: #1e1e1e;
+  padding: 12px;
   margin-bottom: 10px;
-  border-left: 5px solid orange;
-}s
+  border-radius: 8px;
+  border-left: 5px solid #7c3aed;
+}
+
+.closeBtn {
+  background: white;
+  color: black;
+  border: 1px solid black;
+  margin-top: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.fechado {
+  color: red;
+  font-weight: bold;
+}
+
+.aberto {
+  color: #00e676;
+  font-weight: bold;
+}
