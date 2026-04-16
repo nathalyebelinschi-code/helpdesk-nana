@@ -2,27 +2,35 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>HelpDesk Nathalye Belinschi</title>
+  <title>HelpDesk Notes</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <h1>📞 Sistema de Chamados</h1>
+  <div class="container">
 
-  <form id="ticketForm">
-    <input type="text" id="titulo" placeholder="Título do chamado" required>
+    <h1>📞 Sistema de Chamados</h1>
 
-    <textarea id="descricao" placeholder="Descrição do chamado"></textarea>
+    <form id="ticketForm">
+      <input type="text" id="titulo" placeholder="Título do chamado" required>
+      <textarea id="descricao" placeholder="Descrição"></textarea>
+      <button type="submit">Abrir Chamado</button>
+    </form>
 
-    <button type="submit">Abrir Chamado</button>
-  </form>
+    <!-- 🔥 ABAS -->
+    <div class="tabs">
+      <button onclick="filtrar('recentes')">Recentes</button>
+      <button onclick="filtrar('abertos')">Abertos</button>
+      <button onclick="filtrar('fechados')">Fechados</button>
+    </div>
 
-  <h2>Chamados</h2>
+    <h2>Chamados</h2>
 
-  <ul id="listaChamados"></ul>
+    <ul id="listaChamados"></ul>
+
+  </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
