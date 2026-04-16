@@ -18,3 +18,6 @@ Projeto desenvolvido para praticar lógica de programação, manipulação de DO
 
 ## 🌐 Acesso
 https://nathalyebelinschi13.github.io/helpdesk-nana/
+
+## 💡 Destaque
+Projeto inspirado em sistemas reais de Service Desk utilizados em empresas de TI.
