@@ -1,8 +1,8 @@
 const form = document.getElementById("ticketForm");
 const lista = document.getElementById("listaChamados");
 
-// salva no navegador
 let chamados = JSON.parse(localStorage.getItem("chamados")) || [];
+let filtro = "recentes";
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -15,34 +15,54 @@ form.addEventListener("submit", function(e) {
     titulo,
     descricao,
     status: "Aberto",
-    dataAbertura: new Date().toLocaleString()
+    data: new Date().toLocaleString()
   };
 
   chamados.push(chamado);
+  salvar();
   renderizar();
 
   form.reset();
 });
 
+function filtrar(tipo) {
+  filtro = tipo;
+  renderizar();
+}
+
 function renderizar() {
   lista.innerHTML = "";
 
-  chamados.forEach(chamado => {
+  let filtrados = [...chamados];
+
+  if (filtro === "abertos") {
+    filtrados = chamados.filter(c => c.status === "Aberto");
+  }
+
+  if (filtro === "fechados") {
+    filtrados = chamados.filter(c => c.status === "Fechado");
+  }
+
+  if (filtro === "recentes") {
+    filtrados = [...chamados].reverse();
+  }
+
+  filtrados.forEach(c => {
     const li = document.createElement("li");
 
     li.innerHTML = `
-      <strong>${chamado.titulo}</strong><br>
-      ${chamado.descricao}<br><br>
+      <strong>${c.titulo}</strong><br>
+      ${c.descricao}<br><br>
 
-      📅 Abertura: ${chamado.dataAbertura}<br>
+      📅 ${c.data ?? "Data não disponível"}<br>
 
-      Status: <span class="${chamado.status === "Fechado" ? "fechado" : "aberto"}">
-        ${chamado.status}
+      Status: <span class="${c.status === "Fechado" ? "fechado" : "aberto"}">
+        ${c.status}
       </span>
 
-      <br><br>
+      <br>
 
-      <button class="closeBtn" onclick="fecharChamado(${chamado.id})">
+      <button class="closeBtn" onclick="fechar(${c.id})">
         Fechar
       </button>
     `;
@@ -50,16 +70,20 @@ function renderizar() {
     lista.appendChild(li);
   });
 
+  salvar();
+}
+
+function fechar(id) {
+  chamados = chamados.map(c =>
+    c.id === id ? { ...c, status: "Fechado" } : c
+  );
+
+  salvar();
+  renderizar();
+}
+
+function salvar() {
   localStorage.setItem("chamados", JSON.stringify(chamados));
 }
 
-function fecharChamado(id) {
-  chamados = chamados.map(c => {
-    if (c.id === id) {
-      return { ...c, status: "Fechado" };
-    }
-    return c;
-  });
-
-  renderizar();
-}
+renderizar();
