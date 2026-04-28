@@ -1,4 +1,4 @@
-# 🖥️ HelpDesk Nana System
+# 🖥️ HelpDesk NaSystem
 
 Sistema de chamados (Help Desk) desenvolvido com HTML, CSS e JavaScript.
 
